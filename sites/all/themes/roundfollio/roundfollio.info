@@ -1,0 +1,37 @@
+;----------// Theme info
+
+  name 			= roundfollio
+  description 		= A circle is the reflection of eternity
+  package 		= Core
+  version 		= 0.1
+  core 			= 7.x
+  screenshot  		= screenshot.png
+  
+;----------// CSS
+
+  stylesheets[all][] 	= css/styles.css
+  stylesheets[all][] 	= css/admin.css
+  stylesheets[all][] 	= css/nivo/default.css
+  stylesheets[all][] 	= css/nivo/nivo-slider.css
+  stylesheets[all][] 	= css/prettyphoto/prettyPhoto.css
+
+;----------// JS
+
+  ;scripts[] 		= js/jquery-1.6.1.min.js
+  scripts[]		= js/jquery.nivo.slider.pack.js
+  scripts[]		= js/jquery.prettyPhoto.js
+
+
+;----------// Regions
+
+  regions[header] 	= Header
+  regions[slider] 	= Slider
+  regions[galleries] 	= Gallery
+  regions[workspace-content] 	= Workspace Content
+  regions[clients] 	= Clients
+  regions[about] 	= About
+  regions[contact] 	= Contact
+  regions[flickr] 	= Flickr
+  regions[facebook] 	= Facebook
+  regions[tweet] 	= Tweet
+  regions[base-content] = Base Content

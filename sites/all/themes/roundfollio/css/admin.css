@@ -1,0 +1,176 @@
+/* Plugins */
+/**
+ * Tables.
+ */
+table {
+  width: 100%;
+  font-size: 0.923em;
+  margin: 0 0 10px;
+  border: 1px solid #bebfb9;
+}
+table td,
+table th {
+  vertical-align: middle;
+  padding: 8px 10px;
+  border: 0;
+  color: #000;
+}
+tr.even,
+tr.odd {
+  border-width: 0 1px 0 1px;
+  border-style: solid;
+  border-color: #bebfb9;
+  background: #f3f4ee;
+}
+tr.odd {
+  background: #fff;
+}
+tr.drag {
+  background: #fe7;
+}
+tr.drag-previous {
+  background: #ffb;
+}
+table th {
+  text-transform: uppercase;
+  background: #e1e2dc;
+  font-weight: normal;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #bebfb9;
+  padding: 3px 10px;
+}
+/**
+ * Force browsers to calculate the width of a 'select all' TH element.
+ */
+table th.select-all {
+  width: 1px;
+}
+table th.active {
+  background: #bdbeb9;
+}
+table th a {
+  display: block;
+  position: relative;
+}
+table th.active a {
+  padding: 0 25px 0 0; /* LTR */
+}
+table th.active img {
+  position: absolute;
+  top: 3px;
+  right: 3px; /* LTR */
+}
+table td.active {
+  background: #e9e9dd;
+}
+table tr.odd td.active {
+  background: #f3f4ee;
+}
+table tr.selected td.active,
+table tr.selected td {
+  background: #ffc;
+  border-color: #eeb;
+}
+table.system-status-report tr {
+  border-bottom: 1px solid #ccc;
+}
+table.system-status-report tr.ok {
+  color: #255b1e;
+  background-color: #e5ffe2;
+}
+table.system-status-report tr.info {
+  color: #040f37;
+  background-color: #bdf;
+}
+table.system-status-report tr.warning {
+  color: #840;
+  background-color: #fffce5;
+}
+table.system-status-report tr.error {
+  color: #8c2e0b;
+  background-color: #fef5f1;
+}
+/**
+ * Exception for webkit bug with the right border of the last cell
+ * in some tables, since it's webkit only, we can use :last-child
+ */
+tr td:last-child {
+  border-right: 1px solid #bebfb9; /* LTR */
+}
+
+
+.view-content a {
+color: blue;
+}
+
+
+div[class^='view-content-administration'],div[class*=' view-content-administration']  {
+padding: 0 20px;
+}
+
+.block-views h2 {
+font-size:30px;
+font-weight: bold;
+padding: 20px;
+
+}
+
+.block-views {
+padding-bottom: 40px;
+
+}
+
+#block-system-main {
+padding-left: 10px;
+padding-top: 10px;
+padding-bottom: 10px;
+}
+
+#block-user-login h3, #block-system-main h3 {
+    background-color: #FFF;
+    width: 100px;    
+}
+
+#block-user-login{
+  width:100%;
+  margin-bottom: 10px;
+}
+#block-user-login input[type="text"],
+#block-user-login input[type="password"]{
+  width: calc(50% - 22px);
+  height:45px;
+  outline: none;
+  border: 1px solid #ddd;
+  padding: 0 10px;
+  border-radius: 2px;
+  color: #333;
+  font-size:0.8rem;
+  -webkit-transition:all 0.1s linear;
+  -moz-transition:all 0.1s linear;
+  transition:all 0.1s linear;
+}
+#block-user-login input:focus{
+  border-color: #358efb;
+}
+
+#block-user-login input[type="submit"] {
+  width:50%;
+  background-color: #CCC;
+  border: none;
+  outline: none;
+  color: #fff;
+  font-size: 14px;
+  font-weight: normal;
+  padding: 14px 0;
+  border-radius: 2px;
+  text-transform: uppercase;
+}
+
+#block-user-login ul {
+  list-style: none;
+}
+
+#user-login-form {
+  text-align: center;
+}

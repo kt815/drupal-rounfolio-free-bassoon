@@ -1,0 +1,122 @@
+<?php
+/**
+ * @todo
+ * -config add list of forms that shouldnt be treated (ie views settings)
+ *   allow for this to be done directly from the form (add a checkbox ?)
+ * - provide a drush command :)
+ * - provide some form info and stuff (form_ID_alter generator)
+ * - provide a link to ignore a form
+ * - consider adding a validation handler, too
+ * - move the info closer to the form somehow ?
+ * - more settings options (what to show), more info about what is shown
+ * - consider comparing the values ?
+ */
+
+/**
+ * Implements hook_menu().
+ */
+function fapidev_menu() {
+  $items['fapidevtest'] = array(
+    'title' => 'Test form',
+    'page callback' => 'fapidev_testform',
+    'access arguments' => array('access fapidev'),
+    'type' => MENU_NORMAL_ITEM,
+  );
+  $items['admin/config/development/fapidev'] = array(
+    'title' => 'FAPIdev config',
+    'page callback' => 'drupal_get_form',
+    'access arguments' => array('access fapidev'),
+    'page arguments' => array('fapidev_config_form'),
+    'type' => MENU_NORMAL_ITEM,
+    'file' => 'fapidev.admin.inc'
+  );
+  return $items;
+}
+
+/**
+ * Implements hook_permission().
+ */
+function fapidev_permission() {
+  return array(
+    'access fapidev' => array(
+      'title' => t('Access fapidev'),
+      'description' => t('Access fapidev'),
+    ),
+  );
+}
+/**
+ * hook_form_alter()
+ * does the important stuff - dpm form & formstate, inject our submit handler
+ */
+function fapidev_form_alter(&$form, &$form_state) {
+  $formid = $form['#form_id'];
+  if (variable_get('fapidev_dpm', true) && _fapidev_check_form($formid)) {
+    array_unshift($form['#submit'], 'fapidev_universal_submit');
+    dpm($form, $formid);
+    dpm($form_state, 'form_state');
+    // TODO: put this into settings
+    if (isset($form_state['node'])) {
+      dpm($form_state['node'], "fstate['node']");
+    }
+
+    // += array();
+  }
+}
+
+/**
+ * function fapidev_testform
+ */
+function fapidev_testform() {
+  $f = drupal_get_form('fapidev_tform');
+  return $f;
+}
+
+/**
+ * Implements hook_form().
+ */
+function fapidev_tform($form, &$form_state) {
+  $form['texta'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Text a'),
+    '#default_value' => 'a',
+    '#required' => TRUE,
+  );
+  $form['actions']['aubmit'] = array(
+    '#type' => 'submit',
+    );
+  return $form;
+}
+
+/**
+ * function fapidev_tform_submit
+ */
+function fapidev_tform_submit(&$form, &$form_state) {
+  dpm($form_state['values'],'orig submit vals');
+}
+
+/**
+ * function fapidev_universal_submit
+ */
+function fapidev_universal_submit(&$form, &$form_state) {
+  if (variable_get('fapidev_dpm', true)) {
+    dpm($form, 'sform');
+    dpm($form_state, 'form_state');
+  }
+}
+
+/**
+ * check if a form is supposed to be treated
+ * @todo: add a variable for this
+ */
+function _fapidev_check_form($formid) {
+  $formstoignore = array(
+    'devel_execute_form',
+    'node_admin_content',
+    'user_filter_form', // all _filter_forms ?
+    );
+  $formOK = true;
+  if (in_array($formid, $formstoignore)) {
+    $formOK = false;
+  }
+  return $formOK;
+}
